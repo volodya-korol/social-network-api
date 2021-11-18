@@ -14,7 +14,7 @@ This API has been copied to [Sandermoen](https://github.com/Sandermoen/instaclon
 1. Clone the repo
 
 ```bash
-git clone https://github.com/Volodya-Korol/korol-social-network-rest-api
+git clone https://github.com/Volodya-Korol/korol-social-network-api
 ```
 
 2. Install NPM packages
