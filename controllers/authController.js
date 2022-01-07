@@ -146,6 +146,7 @@ module.exports.register = async (req, res, next) => {
     await confirmationToken.save();
     res.status(201).send({
       user: {
+        _id: user._id,
         email: user.email,
         username: user.username,
       },
@@ -177,12 +178,14 @@ module.exports.githubLoginAuthentication = async (req, res, next) => {
         state,
       }
     );
+  
     const accessToken = response.data.split('&')[0].split('=')[1];
 
     // Retrieve the user's info
     const githubUser = await axios.get('https://api.github.com/user', {
       headers: { Authorization: `token ${accessToken}` },
     });
+
 
     // Retrieve the user's email addresses
     // Private emails are not provided in the previous request

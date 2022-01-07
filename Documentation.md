@@ -111,7 +111,7 @@ Body
 ```js
 axios
 	.put(
-		`url/api/auth/register`,
+		`url/api/auth/password`,
 		{
 			newPassword: "@Hello1234",
 			oldPassword: "1234Q@werty",

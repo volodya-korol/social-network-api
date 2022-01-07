@@ -12,6 +12,7 @@ const {
   searchUsers,
   confirmUser,
   changeAvatar,
+  changeHeader,
   removeAvatar,
   updateProfile,
   retrieveSuggestedUsers,
@@ -19,11 +20,11 @@ const {
 const { requireAuth, optionalAuth } = require('../controllers/authController');
 
 userRouter.get('/suggested/:max?', requireAuth, retrieveSuggestedUsers);
-userRouter.get('/:username', optionalAuth, retrieveUser);
-userRouter.get('/:username/posts/:offset', retrievePosts);
 userRouter.get('/:userId/:offset/following', requireAuth, retrieveFollowing);
 userRouter.get('/:userId/:offset/followers', requireAuth, retrieveFollowers);
-userRouter.get('/:username/:offset/search', searchUsers);
+userRouter.get('/:username/:offset/:stepSize', optionalAuth, retrieveUser);
+userRouter.get('/:username/posts/:offset', retrievePosts);
+userRouter.get('/:username/:offset/:stepSize/search', searchUsers);
 
 userRouter.put('/confirm', requireAuth, confirmUser);
 userRouter.put(
@@ -35,6 +36,20 @@ userRouter.put(
   }).single('image'),
   changeAvatar
 );
+
+
+userRouter.put(
+  '/header',
+  requireAuth,
+  multer({
+    dest: 'temp/',
+    limits: { fieldSize: 8 * 1024 * 1024* 1024, fileSize: 10000000 },
+  }).single('image'),
+  changeHeader
+);
+
+
+
 userRouter.put('/', requireAuth, updateProfile);
 
 userRouter.delete('/avatar', requireAuth, removeAvatar);

@@ -27,12 +27,12 @@ const postLimiter = rateLimit({
 postRouter.post("/", postLimiter, requireAuth, upload, createPost);
 postRouter.post("/:postId/vote", requireAuth, votePost);
 
-postRouter.get("/suggested/:offset", requireAuth, retrieveSuggestedPosts);
+postRouter.get("/suggested/:offset/:stepSize", requireAuth, retrieveSuggestedPosts);
 postRouter.get("/filters", (req, res) => {
 	res.send({ filters });
 });
 postRouter.get("/:postId", retrievePost);
-postRouter.get("/feed/:offset", requireAuth, retrievePostFeed);
+postRouter.get("/feed/:offset/:stepSize", requireAuth, retrievePostFeed);
 postRouter.get("/hashtag/:hashtag/:offset", requireAuth, retrieveHashtagPosts);
 
 postRouter.delete("/:postId", requireAuth, deletePost);

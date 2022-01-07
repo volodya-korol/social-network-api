@@ -33,6 +33,7 @@ const UserSchema = new Schema({
     minlength: 8,
   },
   avatar: String,
+  header: String,
   bio: {
     type: String,
     maxlength: 130,
