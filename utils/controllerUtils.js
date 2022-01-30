@@ -115,7 +115,7 @@ module.exports.sendEmail = async (to, template) => {
 	let mailOptions = {
 		from: "socialnetwork.korol@gmail.com",
 		to: to,
-		subject: "Korol Social Nettwork",
+		subject: "Korol Social Network",
 		html: template,
 	};
 	await transporter.sendMail(mailOptions);

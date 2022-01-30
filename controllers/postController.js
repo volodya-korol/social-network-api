@@ -270,7 +270,7 @@ module.exports.retrievePostFeed = async (req, res, next) => {
 		const posts = await Post.aggregate([
 			{
 				$match: {
-					$or: [{ author: { $in: following } }, { author: ObjectId(user._id) }],
+					$or: [{ author: { $in: following } }],
 				},
 			},
 			{ $sort: { date: -1 } },
